@@ -1,46 +1,36 @@
 import React, { Component } from 'react';
 import './App.css';
+import Square from './Square.js';
+import './Square.css';
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      turn: 'X',
-      gameEnded: false,
       board: Array(9).fill(''),
+      currentUser: 'X'
     }
   }
-  clicked(event) {
-    if(this.state.board[event.target.dataset.square] === ''){
-      
-      this.state.board[event.target.dataset.square] = this.state.turn;
-      event.target.innerText = this.state.turn;
+
+    changeUser = () =>{
       this.setState({
-        turn: this.state.turn === 'X' ? 'O' : 'X',
-        board: this.state.board
+        currentUser: this.state.currentUser === 'X' ? "O" : "X",
       })
+
     }
-      console.log(this.state.board)
-  }
 
   render() {
     return (
       <div id="game">
         <div id='head'>
-          <h5> Tic Tac Toe Jcsouz Games </h5>
+          <h5 onClick={this.changeUser}> Tic Tac Toe Jcsouz Games </h5>
         </div>
-        {this.state.gameEnded && <h1> Acabou </h1>}
-        <div id="board" onClick={(e) => this.clicked(e)}>
-          <div className="square" data-square="0"></div>
-          <div className="square" data-square="1"></div>
-          <div className="square" data-square="2"></div>
-          <div className="square" data-square="3"></div>
-          <div className="square" data-square="4"></div>
-          <div className="square" data-square="5"></div>
-          <div className="square" data-square="6"></div>
-          <div className="square" data-square="7"></div>
-          <div className="square" data-square="8"></div>
+        <div id="board">
+          {this.state.board.map((v, i) => <Square key={i} changeUser={this.changeUser} currentUser={this.state.currentUser}>
+            {props => (<span>{props}</span>)}
+          </Square>
+          )}
         </div>
       </div>
     );
