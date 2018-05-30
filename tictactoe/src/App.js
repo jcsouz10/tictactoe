@@ -4,14 +4,15 @@ import Square from './Square.js';
 import './Square.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       board: Array(9).fill(''),
       currentUser: 'X',
       position: Array(9).fill(''),
-      teste: this.props.teste
+      xWin: false,
+      oWin: false
     }
   }
 
@@ -22,15 +23,25 @@ class App extends Component {
   }
 
   playerWinner = () => {
-    const {position} = this.state;
+    const { position } = this.state;
 
-    if(position[1] && position[3] && position[6] === "X"){
-        alert('X is the winner')
-      }
-     
-    this.setState({
-      teste: position
-    })
+    if (
+      (position[0] === 'X') && (position[1] === "X") && (position[2] === "X") ||
+      (position[3] === 'X') && (position[4] === "X") && (position[5] === "X") ||
+      (position[6] === 'X') && (position[7] === "X") && (position[8] === "X")
+    ) {
+      this.setState({
+        xWin: true
+      })
+    } else if (
+      (position[0] === "O") && (position[1] === "O") && (position[2] === "O") ||
+      (position[3] === 'O') && (position[4] === "O") && (position[5] === "O") ||
+      (position[6] === 'O') && (position[7] === "O") && (position[8] === "O")
+    ) {
+      this.setState({
+        oWin: true
+      })
+    }
   }
 
   render() {
@@ -45,6 +56,10 @@ class App extends Component {
             {props => (<span>{props}</span>)}
           </Square>
           )}
+        </div>
+        <div id='header'>
+          {this.state.xWin && <h4> PLAYER X WINNER </h4>}
+          {this.state.oWin && <h4> PLAYER O WINNER </h4>}
         </div>
       </div>
     );
