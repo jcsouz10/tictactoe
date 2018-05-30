@@ -4,13 +4,14 @@ import Square from './Square.js';
 import './Square.css';
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       board: Array(9).fill(''),
       currentUser: 'X',
       position: Array(9).fill(''),
+      teste: this.props.teste
     }
   }
 
@@ -21,7 +22,15 @@ class App extends Component {
   }
 
   playerWinner = () => {
-    console.log(this.state.position)
+    const {position} = this.state;
+
+    if(position[1] && position[3] && position[6] === "X"){
+        alert('X is the winner')
+      }
+     
+    this.setState({
+      teste: position
+    })
   }
 
   render() {

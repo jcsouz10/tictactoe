@@ -11,8 +11,13 @@ class Square extends React.Component {
   }
 
   changePlayer = () => {
-    const { changeUser, value, position, playerWinner, currentUser } = this.props;
-    position.push(currentUser);
+    const { changeUser, value, position, currentUser, playerWinner } = this.props;
+
+
+    this.setState({
+      teste:  position.splice(value, 0, currentUser)
+    })
+    
     changeUser();
     playerWinner();
     if (this.state.player === '') {
@@ -27,6 +32,7 @@ class Square extends React.Component {
       <div className="square" onClick={this.changePlayer}>
         {this.props.children(this.state.player)}
         {this.props.children(this.state.position)}
+        {this.state.teste}
       </div>
     )
   }
