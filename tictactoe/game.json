@@ -1,22 +1,13 @@
 {
-    "glossary": {
-        "title": "example glossary",
-		"GlossDiv": {
-            "title": "S",
-			"GlossList": {
-                "GlossEntry": {
-                    "ID": "SGML",
-					"SortAs": "SGML",
-					"GlossTerm": "Standard Generalized Markup Language",
-					"Acronym": "SGML",
-					"Abbrev": "ISO 8879:1986",
-					"GlossDef": {
-                        "para": "A meta-markup language, used to create markup languages such as DocBook.",
-						"GlossSeeAlso": ["GML", "XML"]
-                    },
-					"GlossSee": "markup"
-                }
-            }
-        }
-    }
+  "match": {
+    "player_x": {
+      "date": "p",
+      "amout_of_winners": 0
+    },
+    "player_o": {
+      "date": "p",
+      "amount_of_winners": 0
+    },
+    "virtual_tie": 0
+  }
 }

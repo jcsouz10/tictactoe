@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Square from './Square.js';
 import './Square.css';
+import axios from 'axios';
 
 class App extends Component {
   constructor() {
@@ -14,10 +15,23 @@ class App extends Component {
       xWin: false,
       oWin: false,
       loserAll: false,
+      playerCurrentX: {},
+      playerCurrentO: {}
     }
   }
 
+
+  componentDidMount() {
+    axios
+      .get("http://localhost:3004/match")
+      .then(response => this.setState({
+        playerCurrentX: response.data.player_x,
+        playerCurrentO: response.data.player_o
+      }));
+  }
+
   changeUser = () => {
+    console.log(this.state.employee)
     this.setState({
       currentPlayer: this.state.currentPlayer === 'X' ? "O" : "X",
     })
@@ -26,9 +40,9 @@ class App extends Component {
   playerWinner = () => {
     const { position } = this.state;
     if (
-     ((position[0] === 'X') && (position[1] === "X") && (position[2] === "X")) ||
-     ((position[3] === 'X') && (position[4] === "X") && (position[5] === "X")) ||
-     ((position[6] === 'X') && (position[7] === "X") && (position[8] === "X"))
+      ((position[0] === 'X') && (position[1] === "X") && (position[2] === "X")) ||
+      ((position[3] === 'X') && (position[4] === "X") && (position[5] === "X")) ||
+      ((position[6] === 'X') && (position[7] === "X") && (position[8] === "X"))
     ) {
       this.setState({
         xWin: true
@@ -56,7 +70,7 @@ class App extends Component {
           <h5> Tic Tac Toe Jcsouz Games </h5>
         </div>
         <div id="board">
-          {this.state.board.map((v, i) => <Square playerWinner={this.playerWinner} position={this.state.position} value={i} key={i} changeUser={this.changeUser}  currentPlayer={this.state.currentPlayer}>
+          {this.state.board.map((v, i) => <Square playerWinner={this.playerWinner} position={this.state.position} value={i} key={i} changeUser={this.changeUser} currentPlayer={this.state.currentPlayer}>
             {props => (<span>{props}</span>)}
           </Square>
           )}
@@ -65,6 +79,9 @@ class App extends Component {
           {this.state.xWin && <h4> PLAYER X WINNER </h4>}
           {this.state.oWin && <h4> PLAYER O WINNER </h4>}
           {this.state.loserAll && <h4> ALL LOSER </h4>}
+          {this.state.playerCurrentX.date}
+          {this.state.playerCurrentO.date}
+
         </div>
       </div>
     );
