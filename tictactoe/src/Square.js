@@ -18,6 +18,7 @@ class Square extends React.Component {
     })
     
     changeUser();
+    
     playerWinner();
     if (this.state.player === '') {
       this.setState({
