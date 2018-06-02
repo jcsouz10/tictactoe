@@ -1,13 +1,14 @@
 {
-  "match": {
-    "player_x": {
-      "date": "p",
-      "amout_of_winners": 0
+  "score": [
+    {
+      "partida": 1,
+      "ganhador": "X",
+      "data": "01/16/2017"
     },
-    "player_o": {
-      "date": "p",
-      "amount_of_winners": 0
-    },
-    "virtual_tie": 0
-  }
+    {
+      "partida": 2,
+      "ganhador": "0",
+      "data": "0/16/207"
+    }
+  ]
 }
