@@ -2,28 +2,25 @@ import React, { Component } from 'react';
 import Square from './Square.js';
 import Score from './Score.js';
 import WinnerOfMatch from './winnerOfMatch.js';
-
+import axios from 'axios'
 import './Square.css';
 
 class App extends Component {
   constructor() {
     super();
-    
+
     this.state = {
       position: Array(9).fill(null),
-      xWin: false,
-      oWin: false,
-      stalemate: false,
       currentPlayer: 'X',
     }
   }
-  
+
   changeUser = () => {
     this.setState({
       currentPlayer: this.state.currentPlayer === 'X' ? "O" : "X",
     })
   }
-  
+
   playerWinner = () => {
     const { position } = this.state;
     if (
@@ -44,32 +41,40 @@ class App extends Component {
       })
     } else if (
       (position[0] && position[1] && position[2] && position[3] && position[4] && position[5] && position[6] && position[7] && position[8] !== null)) {
-        this.setState({
-          stalemate: true
-        })
-      }
+      this.setState({
+        stalemate: true
+      })
+    }
   }
-    
-    render() {
-      return (
+
+  teste = () => {
+    axios.post('/api/match', { firstName: 'Marlon', lastName: 'Bernardes' })
+  .then(function(response){
+    console.log('salvo com sucesso')
+  });  
+  }
+
+  render() {
+    return (
       <div id="game">
         <div id='head'>
+          <button onClick={this.teste}> Oi </button>
           <h5> Tic Tac Toe Jcsouz Games </h5>
         </div>
         <div id="board">
-          {this.state.position.map((v, i)  => <Square  playerWinner={this.playerWinner} position={this.state.position} value={i} key={i} changeUser={this.changeUser} currentPlayer={this.state.currentPlayer}>
-          {props => (<span>{props}</span>)}
-            </Square>
+          {this.state.position.map((v, i) => <Square playerWinner={this.playerWinner} position={this.state.position} value={i} key={i} changeUser={this.changeUser} currentPlayer={this.state.currentPlayer}>
+            {props => (<span>{props}</span>)}
+          </Square>
           )}
         </div>
-          <div id='footer'>
-            <WinnerOfMatch xWin={this.state.xWin} oWin={this.state.oWin} stalemate={this.state.stalemate}/>
-          </div>
-          <div id="score">
-            <h1> SCORE </h1>
-            <Score historicOfMatch={this.state.historicOfMatch}/>
+        <div id='footer'>
+          <WinnerOfMatch xWin={this.state.xWin} oWin={this.state.oWin} stalemate={this.state.stalemate} />
         </div>
-    </div>
+        <div id="score">
+          <h1> SCORE </h1>
+          <Score historicOfMatch={this.state.historicOfMatch} />
+        </div>
+      </div>
     );
   }
 }

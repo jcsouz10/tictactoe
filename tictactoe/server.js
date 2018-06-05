@@ -1,8 +1,11 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
 const rotas = require('./rotas')
 const port = 3001;
+
+app.use(bodyParser());
 
 app.get('/', (req, res) => {
   res.send("foi")
