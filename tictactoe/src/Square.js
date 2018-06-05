@@ -13,18 +13,12 @@ class Square extends React.Component {
   changePlayer = () => {
     const { changeUser, value, position, currentPlayer, playerWinner } = this.props;
 
-    this.setState({
-      position:  position[value] = currentPlayer
-    })
-    
-    changeUser();
-    
-    playerWinner();
-    
     if (this.state.player === '') {
       this.setState({
-        player: this.props.currentPlayer,
+        player: position[value] = currentPlayer,
       })
+      playerWinner();
+      changeUser();
     }
   }
 

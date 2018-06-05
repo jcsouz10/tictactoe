@@ -39,6 +39,15 @@
   padding: 15px;
 }
 
+#score {
+  text-align: center;
+  background-color: grey
+}
+
+#footer {
+  text-align: center;
+  background-color: greenyellow
+}
 .square:nth-child(7), .square:nth-child(8), .square:nth-child(9) {
     border-bottom: 0;
 }
