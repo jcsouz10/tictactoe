@@ -17,4 +17,3 @@ app.listen(port, () => {
   console.log('Server rodando na porta 3001')
 })
 
-

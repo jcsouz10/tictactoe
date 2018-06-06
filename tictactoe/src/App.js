@@ -47,12 +47,6 @@ class App extends Component {
     }
   }
 
-  teste = () => {
-    axios.post('/api/match', { firstName: 'Marlon', lastName: 'Bernardes' })
-  .then(function(response){
-    console.log('salvo com sucesso')
-  });  
-  }
 
   render() {
     return (
