@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Square from './Square.js';
 import Score from './Score.js';
 import WinnerOfMatch from './winnerOfMatch.js';
-import axios from 'axios'
 import './Square.css';
 
 class App extends Component {
@@ -26,7 +25,9 @@ class App extends Component {
     if (
       ((position[0] === 'X') && (position[1] === "X") && (position[2] === "X")) ||
       ((position[3] === 'X') && (position[4] === "X") && (position[5] === "X")) ||
-      ((position[6] === 'X') && (position[7] === "X") && (position[8] === "X"))
+      ((position[6] === 'X') && (position[7] === "X") && (position[8] === "X")) ||
+      ((position[0] === 'X') && (position[4] === "X") && (position[8] === "X")) ||
+      ((position[2] === 'X') && (position[4] === "X") && (position[6] === "X"))
     ) {
       this.setState({
         xWin: true
@@ -34,7 +35,10 @@ class App extends Component {
     } else if (
       ((position[0] === 'O') && (position[1] === 'O') && (position[2] === 'O')) ||
       ((position[3] === 'O') && (position[4] === 'O') && (position[5] === 'O')) ||
-      ((position[6] === 'O') && (position[7] === 'O') && (position[8] === 'O'))
+      ((position[6] === 'O') && (position[7] === 'O') && (position[8] === 'O')) ||
+      ((position[6] === 'O') && (position[7] === "O") && (position[8] === "O")) ||
+      ((position[0] === 'O') && (position[4] === "O") && (position[8] === "O")) ||
+      ((position[2] === 'O') && (position[4] === "O") && (position[6] === "O"))
     ) {
       this.setState({
         oWin: true,
@@ -52,7 +56,6 @@ class App extends Component {
     return (
       <div id="game">
         <div id='head'>
-          <button onClick={this.teste}> Oi </button>
           <h5> Tic Tac Toe Jcsouz Games </h5>
         </div>
         <div id="board">
@@ -65,8 +68,7 @@ class App extends Component {
           <WinnerOfMatch xWin={this.state.xWin} oWin={this.state.oWin} stalemate={this.state.stalemate} />
         </div>
         <div id="score">
-          <h1> SCORE </h1>
-          <Score historicOfMatch={this.state.historicOfMatch} />
+          {/* <Score historicOfMatch={this.state.historicOfMatch} /> */}
         </div>
       </div>
     );

@@ -20,7 +20,7 @@ class Score extends React.Component {
     render (){
         return(
             <div>
-            {this.state.historicOfMatch.map((i)=><div className='player'><h5> PARTIDA: {i.partida}</h5> <p> GANHADOR: PLAYER {i.ganhador} </p> <p> DATA: {i.data} </p></div>)}
+            {this.state.historicOfMatch.map((i)=><div key={i.partida} className='player'><h5> PARTIDA: {i.partida}</h5> <p> GANHADOR: PLAYER {i.ganhador} </p> <p> DATA: {i.data} </p></div>)}
             </div>
         )
     }
